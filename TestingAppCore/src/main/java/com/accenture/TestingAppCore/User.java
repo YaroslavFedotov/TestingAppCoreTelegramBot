@@ -5,13 +5,9 @@ public class User {
     private String name;
     private String password;
     private boolean admin_status;
-    public User (String login, String name, String password, boolean admin_status) {
-        this.login = login;
-        this.name = name;
-        this.password = password;
-        this.admin_status = admin_status;
-    }
+
     public User() {}
+
     public String getLogin() {
         return login;
     }

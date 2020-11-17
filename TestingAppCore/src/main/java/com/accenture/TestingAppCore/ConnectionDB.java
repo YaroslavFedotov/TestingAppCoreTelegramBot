@@ -11,7 +11,7 @@ public class ConnectionDB extends ConfigDB {
             throws ClassCastException, SQLException {
         String ConnectionString = "jdbc:h2:" + dbPath + "/" + dbName;
         try {
-            Class.forName("org.h2.Driver");
+            Class.forName(dbClassDriver);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -159,18 +159,19 @@ public class ConnectionDB extends ConfigDB {
         }
         try {
             rs.next();
-            result = "сложность: " + rs.getString(2) + "\n\n" +
-                    "тип: " + rs.getString(3) + "\n\n" + "автор: " +
-                    rs.getString(4) + "\n\n\n" + "текст вопроса:\n" +
-                    rs.getString(5) + "\n\n" + "текст ответа:\n" +
-                    rs.getString(6);
+            result = DialogueConstant.QUESTION_PREPARED_STATEMENT_1 + rs.getString(2) +
+                    DialogueConstant.QUESTION_PREPARED_STATEMENT_2 + rs.getString(3) +
+                    DialogueConstant.QUESTION_PREPARED_STATEMENT_3 + rs.getString(4) +
+                    DialogueConstant.QUESTION_PREPARED_STATEMENT_4 + rs.getString(5) +
+                    DialogueConstant.QUESTION_PREPARED_STATEMENT_5 + rs.getString(6);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return result;
     }
     public void eraseQuestion(String questionId) {
-        String erase = "DELETE FROM " + ConstantBD.QUESTIONS_TABLE + " WHERE " + ConstantBD.QUESTIONS_ID + " = ?";
+        String erase = "DELETE FROM " + ConstantBD.QUESTIONS_TABLE + " WHERE " +
+                ConstantBD.QUESTIONS_ID + " = ?";
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(erase);
             prSt.setString(1, questionId);

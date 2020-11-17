@@ -107,7 +107,7 @@ public class AdminController {
            progressСounter = 0;
            Input.modesOff();
            test.setName(adminMessage);
-           return "вопросы теста:\n" + connectionDB.getTest(test);
+           return DialogueConstant.REGULAR_EXPRESSION_QUESTION + connectionDB.getTest(test);
        }
    }
 

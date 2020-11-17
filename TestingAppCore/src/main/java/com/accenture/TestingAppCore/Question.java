@@ -5,13 +5,6 @@ public class Question {
     private String authorLogin;
     private String difficulty;
     private String questionText;
-
-    public Question(String type, String authorLogin, String difficulty, String questionText) {
-        this.type = type;
-        this.authorLogin = authorLogin;
-        this.difficulty = difficulty;
-        this.questionText = questionText;
-    }
     public Question() {};
     public String getType() { return type; }
     public void setType(String type) { this.type = type; }

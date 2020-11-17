@@ -1,20 +1,11 @@
 package com.accenture.TestingAppCore;
 
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class Input {
 
     private static boolean startModOn;
-    private static boolean userModOn;
-    private static boolean adminModOn;
-
-    private static boolean takeTestOn;
-
-    private static String proverka;
-
     private static boolean createQuestionModOn;
     private static boolean openQuestionModOn;
     private static boolean deleteQuestionModOn;
@@ -22,21 +13,15 @@ public class Input {
     private static boolean openTestModOn;
     private static boolean deleteTestModOn;
     private static boolean testingModOn;
-
     private static boolean registrationFlow;
     private static boolean authorizationFlow;
     private static boolean userFlow;
     private static boolean administrationFlow;
     private static int flowStep = 0;
     private static User user = new User();
-    private static UserController userController = new UserController();
-
-    public static ArrayList testQuestionId = new ArrayList();
-    public static int testQuestionIdSize;
 
 
     public static String processingUserInput(String userInput) {
-
         if (registrationFlow) {
             return registerNewUserProcess(userInput);
         } else if (authorizationFlow) {
@@ -45,8 +30,7 @@ public class Input {
             if (testingModOn) {
                 return testingProcess(userInput);
             } else {
-                return userProcess(userInput);
-            }
+                return userProcess(userInput); }
         } else if (administrationFlow) {
             administrationProcess(userInput);
             if (createQuestionModOn) {
@@ -84,7 +68,7 @@ public class Input {
                         return DialogueConstant.MISTAKE_START_MESSAGE_BOT;
                     }
                 default:
-                    return DialogueConstant.MISTAKE_MESSAGE_BOT + "|||";
+                    return DialogueConstant.MISTAKE_MESSAGE_BOT;
             }
         }
         return DialogueConstant.START_MESSAGE_BOT;
@@ -107,9 +91,9 @@ public class Input {
             flowStep++;
             return (DialogueConstant.REGISTER_STATUS_MESSAGE_BOT);
         } else {
-            if (currentMessage.equals("1111")) {
+            if (currentMessage.equals(DialogueConstant.ADMIN_PASSWORD)) {
                 user.setAdmin_status(true);
-            } else if (currentMessage.equals("no")) {
+            } else if (currentMessage.equals(DialogueConstant.NO_ADMIN_MESSAGE)) {
                 user.setAdmin_status(false);
             } else {
                 return (DialogueConstant.MISTAKE_MESSAGE_BOT);
@@ -161,7 +145,6 @@ public class Input {
                     throwables.printStackTrace();
                 }
                 if (adminOccurrence) {
-                    adminModOn = true;
                     flowStopper ();
                     administrationFlow = true;
                     return DialogueConstant.AUTHORIZATION_ADMIN_MESSAGE_BOT;
@@ -174,13 +157,11 @@ public class Input {
             }
             flowStopper ();
             userFlow = true;
-            userModOn = true;
             return DialogueConstant.AUTHORIZATION_USER_MESSAGE_BOT;
         }
     }
 
     private static void administrationProcess (String currentMessage) {
-        proverka = currentMessage;
         if (currentMessage.equals(DialogueConstant.CREATE_TEST_USER)) {
             createTestModOn = true;
         } else if (currentMessage.equals(DialogueConstant.OPEN_TEST_USER)) {
@@ -203,7 +184,6 @@ public class Input {
             case DialogueConstant.TAKE_TEST_USER:
                 testingModOn = true;
                 return DialogueConstant.TESTING_START_MESSAGE_BOT;
-                //1
             case DialogueConstant.LOGOUT_USER:
                 logout();
                 return DialogueConstant.START_MESSAGE_BOT;
@@ -212,12 +192,10 @@ public class Input {
         }
     }
     private static String testingProcess (String currentMessage) {
-        return userController.testPerformer(currentMessage);
+        return UserController.testPerformer(currentMessage);
     }
 
     private static void logout() {
-        userModOn = false;
-        adminModOn = false;
         authorizationFlow = false;
         administrationFlow = false;
         userFlow = false;
@@ -233,7 +211,6 @@ public class Input {
 
     public static void TestingFlowStopper () {
         testingModOn = false;
-        userController = new UserController();
     }
 
     public static void modesOff() {

@@ -3,10 +3,7 @@ package com.accenture.TestingAppCore;
 public class Test {
     private String name;
     private String questions_list;
-    public Test(String name, String questions_list) {
-        this.name = name;
-        this.questions_list = questions_list;
-    }
+
     public Test(String name) {
         this.name = name;
     }

@@ -5,4 +5,6 @@ public class ConfigDB {
     protected String dbPass = "357753";
     protected String dbName = "DATA";
     protected String dbPath = "C:/Users/zer01/Desktop/TestingAppCore/src/main/resources";
+    protected String dbClassDriver = "org.h2.Driver";
+
 }
