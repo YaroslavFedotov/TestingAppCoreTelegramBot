@@ -9,6 +9,7 @@ public class Bot extends TelegramLongPollingBot{
     private static final String TOKEN = "1358348087:AAH50PwSsTalSN6y4iPbAMoyhNmkgRwJf5E";
     private static final String USERNAME = "TestingProgectBot";
     private static String finalMessage;
+
     public Bot() { }
 
     public String getBotToken() {return TOKEN;}

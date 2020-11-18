@@ -6,7 +6,6 @@ public class AdminController {
     private static Test test = new Test();
     private static Question question = new Question();
     private static Answer answer = new Answer();
-
     private static int progressСounter = 0;
 
     public static String createQuestion(String adminMessage) {

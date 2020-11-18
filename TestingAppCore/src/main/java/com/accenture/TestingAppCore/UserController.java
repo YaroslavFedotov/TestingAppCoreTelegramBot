@@ -3,12 +3,12 @@ import java.util.ArrayList;
 
 public class UserController {
 
-    public static int questionNumberInTheTest;
-    public static int numberOfCorrectAnswers;
-    public static ArrayList questionAnswerParts = new ArrayList();
-    public static String questionMessage;
-    public static ArrayList testQuestionId = new ArrayList();
-    public static int testQuestionIdSize;
+    private static int questionNumberInTheTest;
+    private static int numberOfCorrectAnswers;
+    private static ArrayList questionAnswerParts = new ArrayList();
+    private static String questionMessage;
+    private static ArrayList testQuestionId = new ArrayList();
+    private static int testQuestionIdSize;
 
     public static String testPerformer(String userMessage) {
         String answer;
